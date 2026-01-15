@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Proxy /api requests to the backend
+  # Requires mod_proxy and mod_proxy_http to be enabled
+  RewriteRule ^api/(.*)$ https://backend.ascww.org/api/$1 [P,L]
+
+  # For client-side routing
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
